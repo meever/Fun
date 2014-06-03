@@ -8,7 +8,7 @@ var securitySchema = mongoose.Schema({
 		OI 		 : Number,
 		bid		 : Number,
 		ask		 : Number,
-		trades 		 : [{_id : String, name: String,  action : String, price: Number,
+		trades 	 : [{name: String, price: Number,
 			share: Number, time : { type: Date, default : Date.now}}]
 });
 

@@ -67,9 +67,11 @@ module.exports = function(app, passport) {
 
 	
 	// show security
-	app.get('/trade/securities',isLoggedIn, trading.show);
-	app.post('/trade/securities',isLoggedIn, trading.add);
-	app.delete('/trade/securities/:sec_id',isLoggedIn, trading.delete);	
+	app.get('/trade/securities/:user',isLoggedIn, trading.show);
+	app.post('/trade/securities/:user',isLoggedIn, trading.add);
+	app.delete('/trade/securities/:user:sec_id',isLoggedIn, trading.delete);	
+
+	app.post('/trade/one/',isLoggedIn, trading.oneTrade);	
 };
 
 // route middleware to make sure

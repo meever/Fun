@@ -6,6 +6,19 @@
 	var security       	= require('../app/models/security');
 
 
+	var showOnly = function(req,res) {
+		security.find(function(err,data){
+			if (err)
+				return console.log('database is empty!')
+//			data["my-messages"] =[
+//			          			{"messagetext":"this is a server message", "severity-level": "warn"},
+//			        			{"messagetext":"this is another server message", "severity-level": "info"},
+//			        			{"messagetext":"and another", "severity-level": "error"}
+//			        		]
+			res.json(data)
+		})
+	}
+		
 	
 	var showAll = function(req,res) {
 		var search={}
@@ -17,17 +30,17 @@
 				for (var i=0; i< this.trades.length; i++){
 					if(this.trades[i].name == name) {
 						own=own+this.trades[i].share
-						balance=balance+ this.trades[i].share* this.trades[i].price
+						balance=balance - this.trades[i].share* this.trades[i].price
 					}
 				}
 			}
 			emit(this._id, {_id	:this._id,
 							security: this.security, 
 							OI	: this.OI, 
-							bid : this.bid, 
-							ask : this.ask, 
+							bid : this.bid.toFixed(2), 
+							ask : this.ask.toFixed(2), 
 							own : own,
-							bal : balance})
+							bal : balance.toFixed(2)})
 		}
 		
 //		search.reduce= function(key, values){			
@@ -48,6 +61,8 @@
 	}
 	
 	exports.show=showAll
+
+	exports.showOnly=showOnly
 		
 	exports.add = function(req,res) {		
 		// create a security, information comes from AJAX request from Angular
@@ -96,25 +111,29 @@
 		var data=req.body
 		var price=req.body.sec.bid
 		if (data.num > 0) price=req.body.sec.ask
-		if (Math.abs(data.num)>5 || Math.abs(req.body.sec.own) >20) return 'Error! Breached your trading limit! take a rest!'
-		security.findById(data.sec._id).exec(function(err, sec){
-			if (err) {
-				console.log('err: no id found ')
-				return;
-			}
-			sec.trades.push({name: data.user, price: price , share: data.num})			
-			sec.trades.push({name: 'Market', price: price , share: -1 * data.num})
-			if (data.num>0) {sec.bid=sec.bid+0.5
-				  			sec.ask=sec.ask+0.5
-				
-			} else {  sec.bid=Math.max(sec.bid-0.5,0)
-				  	sec.ask=Math.max(sec.ask-0.5,0)				
-			}
-			sec.save(function(err){
-				if (err)
-					return console.log('err trading')
-				showAll(req,res)
-			})
-		})
+		//console.log(req.body.sec)
+		if (Math.abs(data.num)>5 || Math.abs(data.sec.own) >20)
+			return 'Error! Breached your trading limit! take a rest!'
+			
+
+	    security.findByIdAndUpdate(req.body.sec._id,
+	    	{$pushAll : { trades : [{name: data.user, price: price , share: data.num},
+				                    {name: 'Market', price: price , share: -1 * data.num}]}},
+		    {safe: true, upsert:true},
+		    function(err,sec){
+		    		if (data.num>0) {sec.bid=sec.bid+0.05
+										sec.ask=sec.ask+0.05						
+					} else {  sec.bid=Math.max(sec.bid-0.05,0)
+						  	sec.ask=Math.max(sec.ask-0.05,0)				
+					}
+		    		sec.save(function(err){
+		    			if (err)
+							console.log('err')
+						else
+							sec.own=data.sec.own+data.num
+						//	console.log(JSON.stringify(sec.own))
+							showAll(req,res)
+		    		})
+		    })    
 	}
 	

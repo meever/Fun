@@ -1,13 +1,13 @@
 <!-- views/index.ejs -->
 <!doctype html>
-<html>
+<html ng-app="securities">
 <head>
 	<title>Trading WorldCup 2014</title>
 	<style>
 		body 		{ padding-top:10px; }
 	</style>
 </head>
-<body>
+<body  ng-controller="frontController">
 	<div class="jumbotron text-center">
 		<div class="container">
 		<h1>WorldCup 2014</h1>
@@ -18,8 +18,61 @@
 			<a href="/signup" class="btn btn-primary btn-lg"><span class="fa fa-user"></span>Signup</a>
 		</div>
 	</div>
+	
+	
+	
+		<div id="secs-list" class="row">
+				<div class="col-lg-10 col-lg-offset-1" >
+					<div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover no-footer">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 80px;">Country</th>
+                                            <th style="width: 50px;">Open Interest</th>
+                                            <th style="width: 30px;">Bid </th>
+                                            <th style="width: 30px;">Ask </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="sec in secs">
+											<td>{{ sec.security}} </td>
+                                            <td>{{sec.OI }}</td>
+                                            <td>{{sec.bid}}</td>
+                                            <td>{{sec.ask}}</td>
+                                        </tr>                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+            </div>
+        </div>
+        <div class="col-lg-6 col-lg-offset-4">
+         <iframe width="402" height="346" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?cid=CDEC144758F9E1C9&resid=CDEC144758F9E1C9%211549&authkey=AMaNWmNO8IaOHrs&em=2&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True"></iframe>
+        </div>
 </body>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
 
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->	
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+<!-- 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-mocks.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
+   
+    <link href="./plugin/growl.css" rel="stylesheet">
+    <script src="./plugin/growl.js"></script>
+    <script src="./plugin/growlDirective.js"></script>
+    <script src="./plugin/growlFactory.js"></script>
+ -->  	
+     <script src="client.js"></script>
 </html>
+
+
+

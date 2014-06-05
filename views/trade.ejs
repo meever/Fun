@@ -58,8 +58,8 @@
                                             <th style="width: 30px;">Ask </th>
                                             <th style="width: 10px;">Own </th>
                                             <th style="width: 30px;">Balance </th>
-                                            <th style="width: 100px;">Buy/Sell </th>
-                                            <th style="width: 50px;">Trade </th>
+                                            <th ng-hide="admin" style="width: 100px;">Buy/Sell </th>
+                                            <th ng-hide="admin" style="width: 50px;">Trade </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -67,13 +67,13 @@
                                             <td ng-show="admin"><input type="checkbox" ng-click="deleteSec(sec._id)"></td>
                                             <td ng-show="admin"><input type="checkbox" ng-click="fillForm([sec.security, sec.OI, sec.bid, sec.ask])"></td>
                                             <td>{{ sec.security}} </td>
-                                            <td> {{sec.OI }}</td>
+                                            <td>{{sec.OI }}</td>
                                             <td>{{sec.bid}}</td>
                                             <td>{{sec.ask}}</td>
                                             <td>{{sec.own}}</td>
                                             <td>{{sec.bal}}</td>
-                                            <td><input type="number" class="form input-sm text-center" placeholder="Number of Shares" ng-model="toTrade"></td>
-                                            <td><button type="trade" class="btn btn-primary btn-sm" ng-click="tradeThis(sec, toTrade)">Trade</button></td>
+                                            <td ng-hide="admin"><input type="number" class="form input-sm text-center" placeholder="Number of Shares" ng-model="toTrade"></td>
+                                            <td ng-hide="admin"><button type="trade" class="btn btn-primary btn-sm" ng-click="tradeThis(sec, toTrade)">Trade</button></td>
                                         </tr>                                      
                                     </tbody>
                                 </table>
@@ -109,11 +109,21 @@
 
 
 </body>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
-
-    <script src="client.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->	
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+<!-- 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-mocks.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.js"></script>
+   
+    <link href="./plugin/growl.css" rel="stylesheet">
+    <script src="./plugin/growl.js"></script>
+    <script src="./plugin/growlDirective.js"></script>
+    <script src="./plugin/growlFactory.js"></script>
+ -->   	
+     <script src="client.js"></script>
+    
 </html>

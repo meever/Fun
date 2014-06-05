@@ -1,4 +1,26 @@
-var app = angular.module('securities',[]);
+var app = angular.module('securities',[]);  //["angular-growl", "ngAnimate", "ngMockE2E"]);
+//
+//app.config(["growlProvider", "$httpProvider", function(growlProvider, $httpProvider) {
+//	growlProvider.globalTimeToLive(2000);
+//	growlProvider.messagesKey("my-messages");
+//	growlProvider.messageTextKey("messagetext");
+//	growlProvider.messageSeverityKey("severity-level");
+//	growlProvider.onlyUniqueMessages(true);
+//	$httpProvider.responseInterceptors.push(growlProvider.serverMessagesInterceptor);
+//}]);
+
+
+function  frontController($scope, $http) {
+	// when landing on the page, get all securities and show them
+	$http.get('/trade/securities/')
+		.success(function(data) {
+			console.log('here')
+			$scope.secs = data;
+		})
+		.error(function(data) {
+			console.log('Error: ' + data);
+		});
+}
 
 function mainController($scope, $http) {
 	$scope.formData = {};
@@ -7,6 +29,7 @@ function mainController($scope, $http) {
 	// when landing on the page, get all securities and show them
 	$http.get('/trade/securities/'+$scope.user)
 		.success(function(data) {
+			console.log('here')
 			$scope.secs = data;
 		})
 		.error(function(data) {
@@ -50,7 +73,7 @@ function mainController($scope, $http) {
 			.success(function(data) {
 				if (typeof data == 'string' && data.slice(6)=='Error!')
 					$http.alert('Error')
-				else $scope.secs = data;
+				else $scope.secs= data;
 			})
 			.error(function(data) {
 				console.log('Error: ' + data);

@@ -53,9 +53,9 @@
                                         	<th ng-show="admin" style="width: 40px;">Remove</th>
                                         	<th ng-show="admin" style="width: 40px;">Change</th>
                                             <th style="width: 80px;">Country</th>
-                                            <th style="width: 50px;">Open Interest</th>
                                             <th style="width: 30px;">Bid </th>
                                             <th style="width: 30px;">Ask </th>
+                                            <th style="width: 50px;">Open Interest</th>
                                             <th style="width: 10px;">Own </th>
                                             <th style="width: 30px;">Balance </th>
                                             <th ng-hide="admin" style="width: 100px;">Buy/Sell </th>
@@ -67,9 +67,9 @@
                                             <td ng-show="admin"><input type="checkbox" ng-click="deleteSec(sec._id)"></td>
                                             <td ng-show="admin"><input type="checkbox" ng-click="fillForm([sec.security, sec.OI, sec.bid, sec.ask])"></td>
                                             <td>{{ sec.security}} </td>
-                                            <td>{{sec.OI }}</td>
                                             <td>{{sec.bid}}</td>
                                             <td>{{sec.ask}}</td>
+                                            <td>{{sec.OI }}</td>
                                             <td>{{sec.own}}</td>
                                             <td>{{sec.bal}}</td>
                                             <td ng-hide="admin"><input type="number" class="form input-sm text-center" placeholder="Number of Shares" ng-model="toTrade"></td>

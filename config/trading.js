@@ -7,7 +7,7 @@
 
 
 	var showOnly = function(req,res) {
-		security.find(function(err,data){
+		security.find({}).sort('-bid').exec(function(err,data){
 			if (err)
 				return console.log('database is empty!')
 //			data["my-messages"] =[
@@ -16,7 +16,7 @@
 //			        			{"messagetext":"and another", "severity-level": "error"}
 //			        		]
 			res.json(data)
-		})
+		})	
 	}
 		
 	
@@ -121,16 +121,17 @@
 				                    {name: 'Market', price: price , share: -1 * data.num}]}},
 		    {safe: true, upsert:true},
 		    function(err,sec){
-		    		if (data.num>0) {sec.bid=sec.bid+0.05
-										sec.ask=sec.ask+0.05						
-					} else {  sec.bid=Math.max(sec.bid-0.05,0)
-						  	sec.ask=Math.max(sec.ask-0.05,0)				
-					}
+//		    		if (data.num>0) {sec.bid=sec.bid+0.05
+//										sec.ask=sec.ask+0.05						
+//					} else {  sec.bid=Math.max(sec.bid-0.05,0)
+//						  	sec.ask=Math.max(sec.ask-0.05,0)				
+//					}
+
+					sec.OI=sec.OI - data.num
 		    		sec.save(function(err){
 		    			if (err)
 							console.log('err')
-						else
-							sec.own=data.sec.own+data.num
+						else						
 						//	console.log(JSON.stringify(sec.own))
 							showAll(req,res)
 		    		})

@@ -1,4 +1,4 @@
-var securities = angular.module('securities', []);
+var app = angular.module('securities',[]);
 
 function mainController($scope, $http) {
 	$scope.formData = {};
@@ -15,7 +15,7 @@ function mainController($scope, $http) {
 
 	// when submitting the add form, send the text to the node API
 	$scope.createSec = function() {
-		$http.post('/trade/securities'+$scope.user, $scope.formData)
+		$http.post('/trade/securities/'+$scope.user, $scope.formData)
 			.success(function(data) {
 				$scope.formData = {}; // clear the form so our user is ready to enter another
 				$scope.secs = data;
@@ -27,7 +27,7 @@ function mainController($scope, $http) {
 
 	// delete a security after checking it
 	$scope.deleteSec = function(id) {
-		$http.delete('/trade/securities/'+$scope.user + id)
+		$http.delete('/trade/securities/'+$scope.user +'/'+ id)
 			.success(function(data) {
 				$scope.secs = data;
 			})
@@ -36,12 +36,21 @@ function mainController($scope, $http) {
 			});
 	};
 	
+	$scope.fillForm = function(sec) {
+		$scope.formData.name=sec[0]
+		$scope.formData.OI=sec[1]
+		$scope.formData.bid=sec[2]
+		$scope.formData.ask=sec[3]
+	};
+	
 	// trade a security
 	$scope.tradeThis = function(sec, num) {
 		var thisTrade={sec:sec, user:$scope.user, num:num}
 		$http.post('/trade/one/' , thisTrade)
 			.success(function(data) {
-				$scope.secs = data;
+				if (typeof data == 'string' && data.slice(6)=='Error!')
+					$http.alert('Error')
+				else $scope.secs = data;
 			})
 			.error(function(data) {
 				console.log('Error: ' + data);

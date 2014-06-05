@@ -69,7 +69,7 @@ module.exports = function(app, passport) {
 	// show security
 	app.get('/trade/securities/:user',isLoggedIn, trading.show);
 	app.post('/trade/securities/:user',isLoggedIn, trading.add);
-	app.delete('/trade/securities/:user:sec_id',isLoggedIn, trading.delete);	
+	app.delete('/trade/securities/:user/:sec_id',isLoggedIn, trading.delete);	
 
 	app.post('/trade/one/',isLoggedIn, trading.oneTrade);	
 };

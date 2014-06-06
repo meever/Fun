@@ -7,14 +7,9 @@
 
 
 	var showOnly = function(req,res) {
-		security.find({}).sort('-bid').exec(function(err,data){
+		security.find({}).sort("order").exec(function(err,data){
 			if (err)
 				return console.log('database is empty!')
-//			data["my-messages"] =[
-//			          			{"messagetext":"this is a server message", "severity-level": "warn"},
-//			        			{"messagetext":"this is another server message", "severity-level": "info"},
-//			        			{"messagetext":"and another", "severity-level": "error"}
-//			        		]
 			res.json(data)
 		})	
 	}
@@ -39,6 +34,7 @@
 							OI	: this.OI, 
 							bid : this.bid.toFixed(2), 
 							ask : this.ask.toFixed(2), 
+							order : this.order,
 							own : own,
 							bal : balance.toFixed(2)})
 		}
@@ -70,6 +66,7 @@
 		security.findOne( {security: req.body.name}).exec(function(err, sec){
 			if (err || sec==undefined) {
 				var newSec= new security({	'security'		 : req.body.name,
+					'order'			 : req.body.order,
 					'OI'			 : req.body.OI,
 					'bid'			 : req.body.bid,
 					'ask'			 : req.body.ask,
@@ -83,6 +80,7 @@
 					})
 				return;
 			}
+			sec.order= req.body.order;
 			sec.OI= req.body.OI;
 			sec.bid=req.body.bid;
 			sec.ask=req.body.ask;

@@ -14,7 +14,6 @@ function  frontController($scope, $http) {
 	// when landing on the page, get all securities and show them
 	$http.get('/trade/securities/')
 		.success(function(data) {
-			console.log('here')
 			$scope.secs = data;
 		})
 		.error(function(data) {
@@ -60,10 +59,12 @@ function mainController($scope, $http) {
 	};
 	
 	$scope.fillForm = function(sec) {
+		console.log(sec)
 		$scope.formData.name=sec[0]
-		$scope.formData.OI=sec[1]
-		$scope.formData.bid=sec[2]
-		$scope.formData.ask=sec[3]
+		$scope.formData.order=sec[1]
+		$scope.formData.OI=sec[2]
+		$scope.formData.bid=parseFloat(sec[3])
+		$scope.formData.ask=parseFloat(sec[4])
 	};
 	
 	// trade a security

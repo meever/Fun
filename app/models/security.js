@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 // define the schema for our user model
 var securitySchema = mongoose.Schema({
 		security : String,
+		order	 : Number,
 		OI 		 : Number,
 		bid		 : Number,
 		ask		 : Number,

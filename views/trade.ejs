@@ -43,30 +43,32 @@
 <div >
  	<div >
 		<div id="secs-list" class="row">
-				<div class="col-lg-10 col-lg-offset-1" >
+				<div class="col-lg-10 col-lg-offset-1" style="height:600px; overflow:scroll" >			
 					<div class="panel panel-default">
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover no-footer">
                                     <thead>
                                         <tr>
-                                        	<th ng-show="admin" style="width: 40px;">Remove</th>
-                                        	<th ng-show="admin" style="width: 40px;">Change</th>
-                                            <th style="width: 80px;">Country</th>
-                                            <th style="width: 30px;">Bid </th>
-                                            <th style="width: 30px;">Ask </th>
-                                            <th style="width: 50px;">Open Interest</th>
-                                            <th style="width: 10px;">Own </th>
-                                            <th style="width: 30px;">Balance </th>
+                                        	<th ng-show="admin"  style="width: 5%">Remove</th>
+                                        	<th ng-show="admin" style="width: 5%" >Change</th>
+                                            <th style="width: 10%">Country</th>
+                                            <th style="width: 5%">Order</th>
+                                            <th style="width: 5%"">Bid </th>
+                                            <th style="width: 5%">Ask </th>
+                                            <th style="width: 5%">Open Interest</th>
+                                            <th style="width: 10%">Own </th>
+                                            <th style="width: 10%">Balance </th>
                                             <th ng-hide="admin" style="width: 100px;">Buy/Sell </th>
                                             <th ng-hide="admin" style="width: 50px;">Trade </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="sec in secs">
-                                            <td ng-show="admin"><input type="checkbox" ng-click="deleteSec(sec._id)"></td>
-                                            <td ng-show="admin"><input type="checkbox" ng-click="fillForm([sec.security, sec.OI, sec.bid, sec.ask])"></td>
+                                            <td ng-show="admin" ><input type="checkbox" ng-click="deleteSec(sec._id)"></td>
+                                            <td ng-show="admin" ><input type="radio" ng-click="fillForm([sec.security,sec.order, sec.OI, sec.bid, sec.ask])"></td>
                                             <td>{{ sec.security}} </td>
+                                            <td>{{ sec.order}} </td>
                                             <td>{{sec.bid}}</td>
                                             <td>{{sec.ask}}</td>
                                             <td>{{sec.OI }}</td>
@@ -91,7 +93,8 @@
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-inline input-sm text-center" placeholder="security name" ng-model="formData.name">
+						<input type="text" class="form-inline input-sm text-center" placeholder="security name" ng-model="formData.name">						
+						<input type="number" class="form-inline input-sm text-center" placeholder="order" ng-model="formData.order">
 						<input type="number" class="form-inline input-sm text-center" placeholder="open interest" ng-model="formData.OI">
 						<input type="number" class="form-inline input-sm text-center" placeholder="bid" ng-model="formData.bid">
 						<input type="number" class="form-inline input-sm text-center" placeholder="ask" ng-model="formData.ask">

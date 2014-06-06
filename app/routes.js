@@ -73,7 +73,8 @@ module.exports = function(app, passport) {
 	app.post('/trade/securities/:user',isLoggedIn, trading.add);
 	app.delete('/trade/securities/:user/:sec_id',isLoggedIn, trading.delete);	
 
-	app.post('/trade/one/',isLoggedIn, trading.oneTrade);	
+	app.post('/trade/one/',isLoggedIn, trading.oneTrade);
+
 };
 
 // route middleware to make sure

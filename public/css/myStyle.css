@@ -1,0 +1,104 @@
+#bulletin{
+	height : 560px;
+	overflow: scroll;
+}
+.jumbotron {
+    padding: 0em 0em 0em 0em;
+    h2 {
+        font-size: 1.2em;
+    }
+    p {
+        font-size: 0.6em;
+        .btn {
+            padding: 0em;
+        }
+    }
+}
+* {
+  box-sizing: border-box;
+}
+
+#chatroom{
+	height : 560px;
+}
+
+ul {
+  list-style: none;
+  word-wrap: break-word;
+  padding-left: 0pt;
+}
+
+/* Login Page */
+
+
+
+
+
+.login.page .usernameInput {
+  	border: 1px solid #000;
+ 	height: 30px;
+  	outline: none;
+ 	width : 100%;
+	background-color: #FFF;
+	color : #000;
+  	font-weight: 100;
+}
+
+
+
+/* Chat page */
+
+.chat.page {
+  display: none;
+}
+
+/* Font */
+
+.messages {
+  font-size: 100%;
+}
+
+.inputMessage {
+  font-size: 100%;
+}
+
+.log {
+  color: gray;
+  font-size: 70%;
+  margin: 5px;
+  text-align: center;
+}
+
+/* Messages */
+
+.chatArea {
+  height: 100%;
+  width: 100%;
+}
+
+.messages {
+  height: 100%;
+  margin: 0;
+  overflow-y: scroll;
+}
+
+.message.typing .messageBody {
+  color: gray;
+}
+
+.username {
+  float: left;
+  font-weight: 700;
+  overflow: hidden;
+  padding-right: 10px;
+  text-align: left;
+}
+
+/* Input */
+
+.inputMessage {
+  border: 1px solid #000;
+  height: 30px;
+  outline: none;
+  width : 100%
+}

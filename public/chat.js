@@ -8,7 +8,7 @@ $(function() {
   ];
 
   // Initialize varibles
-  var $window = $(window);
+  //var $window = $(window);
   var $usernameInput = $('.usernameInput'); // Input for username
   var $messages = $('.messages'); // Messages area
   var $inputMessage = $('.inputMessage'); // Input message input box
@@ -190,7 +190,7 @@ $(function() {
 
   // Keyboard events
 
-  $window.keydown(function (event) {
+  $('.usernameInput, .inputMessage').keydown(function (event) {
     // Auto-focus the current input when a key is typed
     if (!(event.ctrlKey || event.metaKey || event.altKey)) {
       $currentInput.focus();

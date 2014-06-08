@@ -7,8 +7,8 @@
 </head>
 <body  ng-controller="frontController" >
 
-	<div class="navbar navbar-default navbar-fixed-top" style="margin:0px" role="navigation">
-      <div class="container">
+	<div class="navbar navbar-default navbar-fixed-top"  role="navigation">
+      <div class="container-fluid">
         <div class="navbar-header" >
           <a class="navbar-brand" href="#"  >   
 				<small ng-show="marketClosed"> Market is closed. </small>
@@ -18,7 +18,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
           	<li><a href="/login" ><span class="fa fa-lock""></span>Login</a></li>
-		<!--	<li ><a href="/signup"><span class="fa fa-user"></span><strong>Signup</strong></a></li>
+		<!--	<li ><a href="#"><span class="fa fa-user"></span><strong>Signup</strong></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -27,7 +27,7 @@
 
 	<div class="jumbotron text-center">
 		<div class="container" >
-			<h1 >WorldCup 2014 Live Bulletin </h1>
+			<h2 >WorldCup 2014 Live Bulletin </h2>
 			<small >Powered by WFZZ Exchange. Copyright(c) 2014</small><p>
 		</div>
 	</div>
@@ -35,11 +35,20 @@
 	
 	
 	<div id="secs-list" class="row">
-		<div class="col-md-4" >
+		<div class="col-lg-1" >	
+		</div>
+		<div class="col-lg-3" >
 			<div class="panel panel-default">					
             	<div class="panel-heading">
-                	<i  class="glyphicon glyphicon-stats pull-left"></i>
-                	<strong> Trade Bulletin </strong>
+            		<div class="row">            			
+            			<div class="col-lg-6">
+                			<i  class="glyphicon glyphicon-stats pull-left"></i>
+                			<strong> Trade Bulletin </strong>
+                		</div>
+                		<div class="col-lg-6">
+                			<input class="form-control input-sm" type="text" ng-model="country"  placeholder="Type here to search for team..." />
+                		</div>
+                	</div> 
                 </div>  
                 <div class="panel-body">
                 	<div id='bulletin'>
@@ -53,7 +62,7 @@
 	                            </tr>
 	                        </thead>
 	                        <tbody>
-	                            <tr ng-repeat="sec in secs" >
+	                            <tr ng-repeat="sec in secs |filter : country" >
 									<td>{{ sec.security}} </td>
 	                                <td>{{sec.bid}}</td>
 	                                <td>{{sec.ask}}</td>
@@ -71,7 +80,7 @@
     	</div>
 
 
-		<div class="col-md-4">
+		<div class="col-lg-4">
 	        <div class="panel panel-default ">
 	        	    <div class="panel-heading">
 	                	<i  class="glyphicon glyphicon-comment"></i> <strong> Messages </strong>
@@ -93,7 +102,8 @@
 					</div>
 			</div>
 		</div>
-        <div class="col-md-4">
+
+        <div class="col-lg-3">
 	        <div class="panel panel-default">
 	        	    <div class="panel-heading">
 	                	<i  class="glyphicon glyphicon-pushpin"></i> <strong> Example Ticket </strong>
@@ -102,13 +112,11 @@
 						<iframe width="350" height="550" frameborder="0" scrolling="yes" src="https://onedrive.live.com/embed?cid=CDEC144758F9E1C9&resid=CDEC144758F9E1C9%211549&authkey=AMaNWmNO8IaOHrs&em=2&wdAllowInteractivity=False&Item='Sheet1'!A1%3AB37&wdHideGridlines=True"></iframe>	        </div>
 					</div>
 			</div>
-		</div>
-		
-		
-
+		</div>		
 	</div>
-  <!--
- -->
+	
+
+
 </body>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> <!-- load bootstrap css -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->

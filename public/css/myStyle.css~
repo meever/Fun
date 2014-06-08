@@ -1,5 +1,5 @@
 #bulletin{
-	min-height : 560px;
+	height : 100%;
 	overflow: scroll;
 }
 .jumbotron {
@@ -19,7 +19,7 @@
 }
 
 #chatroom{
-	min-height : 560px;
+	height : 560px;
 }
 
 ul {

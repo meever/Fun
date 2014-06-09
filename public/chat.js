@@ -229,7 +229,7 @@ $(function() {
   socket.on('login', function (data) {
     connected = true;
     // Display the welcome message
-    var message = "Welcome to the chatroom @ WFZZ exchange! ";
+    var message = "Welcome to the chatroom @ WFZZ exchange, send ticket to Sam by email!";
     log(message, {
       prepend: true
     });

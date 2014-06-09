@@ -2,8 +2,8 @@
 
 	
 // load up the user model
-	var User       		= require('../app/models/user');
-	var security       	= require('../app/models/security');
+	var User       		= require('./models/user');
+	var security       	= require('./models/security');
 
 
 	var showOnly = function(req,res) {

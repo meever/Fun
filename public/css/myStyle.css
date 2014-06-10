@@ -1,27 +1,13 @@
 
-
 #bulletin{
 	height : 560px;
 	overflow: scroll;
 }
-.jumbotron {
-    padding: 0em 0em 0em 0em;
-    h2 {
-        font-size: 1.2em;
-    }
-    p {
-        font-size: 0.6em;
-        .btn {
-            padding: 0em;
-        }
-    }
-}
-* {
-  box-sizing: border-box;
-}
+
+
 
 #chatroom{
-	height : 560px;
+	height : 540px;
 }	
 
 ul {

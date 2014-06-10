@@ -1,39 +1,40 @@
 <!-- views/index.ejs -->
-<!doctype html>
-<html ng-app="frontpage">
+<!doctype html xmlns:ng="http://angularjs.org">
+<html  >
 <head>
 	<title>Trading WorldCup 2014</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body  ng-controller="frontController" >
+<body xmlns:ng="http://angularjs.org" id="ng-app" ng-app="frontpage" ng-controller="frontController" >
 
-	<div class="navbar navbar-default navbar-fixed-top"  role="navigation">
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header" >
           <a class="navbar-brand" href="#"  >   
 				<small ng-show="marketClosed"> Market is closed. </small>
 				<timer ng-hide="marketClosed" end-time="mktEnd">Market closes in {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer>
-			</a>
+		  </a>
 		</div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
           	<li><a href="/login" ><span class="fa fa-lock""></span>Login</a></li>
-		<!--	<li ><a href="#"><span class="fa fa-user"></span><strong>Signup</strong></a></li>
+		<!--	<li ><a href="/signup"><span class="fa fa-user"></span><strong>Signup</strong></a></li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
+        	<!--/.nav-collapse -->
       </div>
     </div>
 
 
 	<div class="jumbotron text-center">
-		<div class="container" >
-			<h2 >WorldCup 2014 Live Bulletin </h2>
+		<div class="container-fluid" >
+			<h1 >WorldCup 2014 Live Bulletin </h1>
 			<small >Powered by WFZZ Exchange. Copyright(c) 2014</small><p>
 		</div>
 	</div>
 	
 	
-	
+
 	<div id="secs-list" class="row">
 		<div class="col-lg-1" >	
 		</div>
@@ -102,8 +103,7 @@
 					</div>
 			</div>
 		</div>
-
-        <div class="col-lg-3">
+         <div class="col-lg-3">
 	        <div class="panel panel-default">
 	        	    <div class="panel-heading">
 	                	<i  class="glyphicon glyphicon-pushpin"></i> <strong> Example Ticket </strong>
@@ -112,11 +112,10 @@
 						<iframe width="350" height="550" frameborder="0" scrolling="yes" src="https://onedrive.live.com/embed?cid=CDEC144758F9E1C9&resid=CDEC144758F9E1C9%211549&authkey=AMaNWmNO8IaOHrs&em=2&wdAllowInteractivity=False&Item='Sheet1'!A1%3AB37&wdHideGridlines=True"></iframe>	        </div>
 					</div>
 			</div>
-		</div>		
+		</div>
 	</div>
-	
-
-
+  <!--
+ -->
 </body>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> <!-- load bootstrap css -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
@@ -127,7 +126,7 @@
 
 	<script src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="./css/myStyle.css">	
-    <script src="front.js"></script>
+    <script src="index.js"></script>
     <script src="chat.js"></script>
 </html>
 

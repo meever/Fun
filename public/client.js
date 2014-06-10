@@ -10,17 +10,6 @@ var app = angular.module('securities',[]);  //["angular-growl", "ngAnimate", "ng
 //}]);
 
 
-function  frontController($scope, $http) {
-	// when landing on the page, get all securities and show them
-	$http.get('/trade/securities/')
-		.success(function(data) {
-			$scope.secs = data;
-		})
-		.error(function(data) {
-			console.log('Error: ' + data);
-		});
-}
-
 function mainController($scope, $http) {
 	$scope.formData = {};
 	$scope.user= window.userName

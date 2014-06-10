@@ -1,11 +1,13 @@
+
+
 #bulletin{
-	min-height : 560px;
+	height : 560px;
 	overflow: scroll;
 }
 .jumbotron {
     padding: 0em 0em 0em 0em;
     h2 {
-        font-size: 1.8em;
+        font-size: 1.2em;
     }
     p {
         font-size: 0.6em;
@@ -19,8 +21,8 @@
 }
 
 #chatroom{
-	min-height : 560px;
-}
+	height : 560px;
+}	
 
 ul {
   list-style: none;

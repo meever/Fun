@@ -190,7 +190,7 @@ $(function() {
 
   // Keyboard events
 
-  $('.usernameInput, .inputMessage').keydown(function (event) {
+ $('.usernameInput, .inputMessage').keydown(function (event) {
     // Auto-focus the current input when a key is typed
     if (!(event.ctrlKey || event.metaKey || event.altKey)) {
       $currentInput.focus();
@@ -229,7 +229,7 @@ $(function() {
   socket.on('login', function (data) {
     connected = true;
     // Display the welcome message
-    var message = "Welcome to the chatroom @ WFZZ exchange! ";
+    var message = "Welcome to the chatroom @ WFZZ exchange, send ticket to Sam by email!";
     log(message, {
       prepend: true
     });

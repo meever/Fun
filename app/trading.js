@@ -2,8 +2,8 @@
 
 	
 // load up the user model
-	var User       		= require('../app/models/user');
-	var security       	= require('../app/models/security');
+	var User       		= require('./models/user');
+	var security       	= require('./models/security');
 
 
 	var showOnly = function(req,res) {
@@ -46,7 +46,7 @@
 		security.mapReduce(search, function(err,results){
 			if (err)
 				return console.log('database is empty!')
-			console.log('mapReduce : '+ JSON.stringify(results))
+			//console.log('mapReduce : '+ JSON.stringify(results))
 			secs=[]
 			for (var i=0; i< results.length; i++) {
 				secs.push(results[i].value)
@@ -62,7 +62,7 @@
 		
 	exports.add = function(req,res) {		
 		// create a security, information comes from AJAX request from Angular
-		console.log(req.body )
+		//console.log(req.body )
 		security.findOne( {security: req.body.name}).exec(function(err, sec){
 			if (err || sec==undefined) {
 				var newSec= new security({	'security'		 : req.body.name,
@@ -75,7 +75,7 @@
 				newSec.save(function (err, newSec) {
 					if (err)
 						return console.log('err adding')
-					console.log(JSON.stringify(newSec))
+					//console.log(JSON.stringify(newSec))
 					showAll(req,res)
 					})
 				return;
@@ -94,7 +94,7 @@
 	};
 	
 	exports.delete = function(req,res) {
-		console.log(req.params)
+		//console.log(req.params)
 		security.remove({_id : req.params.sec_id}, function(err) {
 			if (err)
 				console.log('err')

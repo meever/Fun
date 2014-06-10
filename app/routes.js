@@ -1,5 +1,5 @@
 // app/routes.js
-var trading    = require('../config/trading.js');
+var trading    = require('./trading.js');
 
 module.exports = function(app, passport) {
 

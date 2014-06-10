@@ -2,7 +2,8 @@
   "name": "node-authentication",
   "main": "server.js",
   "dependencies" : {
-    "express" : "*", 			
+    "express" : "*", 
+    "static-favicon": "~1.0.0",
     "ejs" : "~0.8.5", 				
     "mongoose" : "*", 
     "morgan": "~1.0.0",

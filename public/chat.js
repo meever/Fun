@@ -236,6 +236,13 @@ $(function() {
     addParticipantsMessage(data);
   });
 
+  // Whenever the server emits 'history', update the chat body
+  socket.on('history', function (data) {
+	  for (var i=data.length; i>0; i--) {
+		  addChatMessage(data[i-1], {prepend: true})
+	  }
+  });
+  
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message', function (data) {
     addChatMessage(data);

@@ -4,13 +4,20 @@
 module.exports = function(io) {
 	var usernames = {};
 	var numUsers = 0;
+	var numMessages =0;
+	var messages =[];
 	
 	io.on('connection', function (socket) {
 	  var addedUser = false;
-	
+	  socket.emit('history', messages.slice(-8));
+	  socket.emit('new message', {username: 'System', message:'type your name below to join the chat!'})
 	  // when the client emits 'new message', this listens and executes
 	  socket.on('new message', function (data) {
 	    // we tell the client to execute 'new message'
+		messages[numMessages++]={
+			      username: socket.username,
+			      message: data
+			    };
 	    socket.broadcast.emit('new message', {
 	      username: socket.username,
 	      message: data
@@ -27,7 +34,7 @@ module.exports = function(io) {
 	    addedUser = true;
 	    socket.emit('login', {
 	      numUsers: numUsers
-	    });
+	    });	    
 	    // echo globally (all clients) that a person has connected
 	    socket.broadcast.emit('user joined', {
 	      username: socket.username,

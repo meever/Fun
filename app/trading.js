@@ -4,6 +4,7 @@
 // load up the user model
 	var User       		= require('./models/user');
 	var security       	= require('./models/security');
+	var book       		= require('./models/orderBook');
 
 
 	var showOnly = function(req,res) {
@@ -13,8 +14,6 @@
 			res.json(data)
 		})	
 	}
-		
-	
 	var showAll = function(req,res) {
 		var search={}
 		search.scope={name: req.params.user }
@@ -112,20 +111,79 @@
 		//console.log(req.body.sec)
 		if (Math.abs(data.num)>5 || Math.abs(data.sec.own) >20)
 			return 'Error! Breached your trading limit! take a rest!'
+		var newOrder= new book({	
+				'security'		 : req.body.sec.security,
+				'share'			 : data.num,
+				'name'			 : data.user,
+				'price'			 : price,
+				'status'		 : 'new'
+				});
+		
+		newOrder.save(function (err, order) {
+				if (err)
+					return console.log('err adding order')
+				})
+		return;	
+	
+//
+//	    security.findByIdAndUpdate(req.body.sec._id,
+//	    	{$pushAll : { trades : [{name: data.user, price: price , share: data.num},
+//				                    {name: 'Market', price: price , share: -1 * data.num}]}},
+//		    {safe: true, upsert:true},
+//		    function(err,sec){
+////		    		if (data.num>0) {sec.bid=sec.bid+0.05
+////										sec.ask=sec.ask+0.05						
+////					} else {  sec.bid=Math.max(sec.bid-0.05,0)
+////						  	sec.ask=Math.max(sec.ask-0.05,0)				
+////					}
+//
+//					sec.OI=sec.OI - data.num
+//		    		sec.save(function(err){
+//		    			if (err)
+//							console.log('err')
+//						else						
+//						//	console.log(JSON.stringify(sec.own))
+//							showAll(req,res)
+//		    		})
+//		    })    
+	}
+	
+	
+	exports.showOrders = function(req,res) {
+		var cc = {name : req.params.user}
+		if (req.params.user == 'Market') cc={ status : {$ne : 'processed'}}
+		book.find(cc).sort("time").exec(function(err,data){
+			if (err)
+				return console.log('database is empty!')
+			res.json(data)
+		})	
+	}
+	
+	exports.setOrders = function(req,res) {
+		var data=req.params
+		book.findByIdAndUpdate(data.id, {$set : { 'status' : data.stat}},  function(err, order){
+			if (err) console.log(err)
+			console.log(order)
+		})
 			
-
-	    security.findByIdAndUpdate(req.body.sec._id,
-	    	{$pushAll : { trades : [{name: data.user, price: price , share: data.num},
-				                    {name: 'Market', price: price , share: -1 * data.num}]}},
+		
+	}
+	
+	exports.processOrders = function(req,res) {
+		book.find({status : 'accepted'},  function(err, orders){
+			if (err) console.log(err)
+			orders.forEach(pushOrder)
+		})
+		
+		
+	function pushOrder(order){
+			console.log(order)
+		    security.findOneAndUpdate({security : order.security} ,
+	    	{$pushAll : { trades : [{name: order.name, price: order.price , share: order.share},
+				                    {name: 'Market', price: order.price , share: -1 * order.share}]}},
 		    {safe: true, upsert:true},
 		    function(err,sec){
-//		    		if (data.num>0) {sec.bid=sec.bid+0.05
-//										sec.ask=sec.ask+0.05						
-//					} else {  sec.bid=Math.max(sec.bid-0.05,0)
-//						  	sec.ask=Math.max(sec.ask-0.05,0)				
-//					}
-
-					sec.OI=sec.OI - data.num
+		    	sec.OI=sec.OI - data.num
 		    		sec.save(function(err){
 		    			if (err)
 							console.log('err')
@@ -133,6 +191,7 @@
 						//	console.log(JSON.stringify(sec.own))
 							showAll(req,res)
 		    		})
-		    })    
+		    })		
+		}	
 	}
 	

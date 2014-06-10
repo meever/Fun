@@ -1,13 +1,48 @@
 
+
 #bulletin{
-	height : 560px;
+	height : 585px;
 	overflow: scroll;
 }
 
+body {
+background-color: #6699ff;
+}
 
+input[type="text"] {
+   height: 22px;
+   font-size: 12px;
+}
+.navbar-primary .navbar-brand {
+    color: #d6d6d6;
+}
+
+.btn-primary{
+  color: #d6d6d6;
+  background-color: #6699ff;
+  border-color: #6699ff;
+}
+
+.panel-primary{
+  background-color: #ffffdc ;
+  border-color:  white;
+}
+
+.jumbotron {
+	background-color : #6699ff;
+    color: yellow;
+     padding: 3em 0em 0em 0em;
+     margin: 0 0 15 0 ;
+     p {
+         font-size: 0.6em;
+         .btn {
+             padding: 0em;
+         }
+     }
+ }
 
 #chatroom{
-	height : 540px;
+	height : 555px;
 }	
 
 ul {

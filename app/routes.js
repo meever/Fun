@@ -53,6 +53,21 @@ module.exports = function(app, passport) {
 		res.redirect('/');
 	});
 	
+	// =====================================
+	// GOOGLE ROUTES =======================
+	// =====================================
+	// send to google to do the authentication
+	// profile gets us their basic information including their name
+	// email gets their emails
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+    // the callback after google has authenticated the user
+    app.get('/auth/google/callback',
+            passport.authenticate('google', {
+                    successRedirect : '/trade',
+                    failureRedirect : '/'
+            }));
+	
 	
 	// =====================================
 	// trade SECTION =========================
@@ -73,8 +88,12 @@ module.exports = function(app, passport) {
 	app.get('/trade/securities/:user',isLoggedIn, trading.show);
 	app.post('/trade/securities/:user',isLoggedIn, trading.add);
 	app.delete('/trade/securities/:user/:sec_id',isLoggedIn, trading.delete);	
-
 	app.post('/trade/one/',isLoggedIn, trading.oneTrade);
+	
+	app.get('/trade/setOrder/:id/:stat',isLoggedIn, trading.setOrders);
+	app.get('/trade/orderBook/:user', isLoggedIn,trading.showOrders);
+	app.get('/trade/processOrders',isLoggedIn, trading.processOrders);
+
 
 };
 

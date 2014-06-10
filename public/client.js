@@ -17,13 +17,43 @@ function mainController($scope, $http) {
 	// when landing on the page, get all securities and show them
 	$http.get('/trade/securities/'+$scope.user)
 		.success(function(data) {
-			console.log('here')
 			$scope.secs = data;
 		})
 		.error(function(data) {
 			console.log('Error: ' + data);
 		});
-
+	
+	$http.get('/trade/orderBook/'+$scope.user)
+	.success(function(data) {
+		$scope.orders = data;
+	})
+	.error(function(data) {
+		console.log('Error: ' + data);
+	});
+	
+	// delete a security after checking it
+	$scope.setOrder = function(id, stat) {
+		$http.get('/trade/setOrder/'+id +'/'+ stat)
+			.success(function(data) {
+				$scope.orders = data;
+			})
+			.error(function(data) {
+				console.log('Error: ' + data);
+			});
+	};
+	
+	// when submitting the order, send the text to the node API
+	$scope.processOrders = function() {
+		$http.get('/trade/processOrders')
+			.success(function(data) {
+				$scope.orders = data;
+			})
+			.error(function(data) {
+				console.log('Error: ' + data);
+			});
+	};
+	
+	
 	// when submitting the add form, send the text to the node API
 	$scope.createSec = function() {
 		$http.post('/trade/securities/'+$scope.user, $scope.formData)

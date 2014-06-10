@@ -17,6 +17,11 @@ input[type="text"] {
     color: #d6d6d6;
 }
 
+.row {
+margin-left: 0px;
+margin-right: 0px;
+}
+
 .btn-primary{
   color: #d6d6d6;
   background-color: #6699ff;

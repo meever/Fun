@@ -183,13 +183,12 @@
 				                    {name: 'Market', price: order.price , share: -1 * order.share}]}},
 		    {safe: true, upsert:true},
 		    function(err,sec){
-		    	sec.OI=sec.OI - data.num
-		    		sec.save(function(err){
+		    	sec.OI=sec.OI - order.share
+		    	sec.save(function(err){
 		    			if (err)
 							console.log('err')
-						else						
-						//	console.log(JSON.stringify(sec.own))
-							showAll(req,res)
+						order.status= 'processed'
+						order.save()
 		    		})
 		    })		
 		}	

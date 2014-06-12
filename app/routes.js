@@ -83,7 +83,7 @@ module.exports = function(app, passport) {
 
 	
 	// show security
-	app.get('/trade/securities/', trading.showOnly);
+	app.get('/trade/securities/',isLoggedIn, trading.showOnly);
 	
 	app.get('/trade/securities/:user',isLoggedIn, trading.show);
 	app.post('/trade/securities/:user',isLoggedIn, trading.add);

@@ -13,8 +13,8 @@ function  frontController($scope, $http) {
 	var d=new Date()
 	var d2=timeParser(d)
 	
-	var start=new Date(d2.year, d2.month, d2.day, 9,30,0,0)
-	var end= new Date(d2.year, d2.month, d2.day, 16,0,0,0)
+	var start=new Date(d2.year, d2.month, d2.day, 10,0,0,0)
+	var end= new Date(d2.year, d2.month, d2.day, 15,0,0,0)
 	if (d< start || d>end) {
 		$scope.marketClosed= true;
 	}else {

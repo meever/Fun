@@ -15,14 +15,17 @@ function mainController($scope, $http) {
 	$scope.user= window.userName
 	$scope.admin= ($scope.user =="Market")
 	// when landing on the page, get all securities and show them
-	$http.get('/trade/securities/'+$scope.user)
-		.success(function(data) {
-			$scope.secs = data;
-		})
-		.error(function(data) {
-			console.log('Error: ' + data);
-		});
 	
+	$scope.showOrders = function(){
+		$http.get('/trade/securities/'+$scope.user)
+			.success(function(data) {
+				$scope.secs = data;
+			})
+			.error(function(data) {
+				console.log('Error: ' + data);
+			});
+	}
+	$scope.showOrders()
 	$http.get('/trade/orderBook/'+$scope.user)
 	.success(function(data) {
 		$scope.orders = data;
@@ -47,6 +50,7 @@ function mainController($scope, $http) {
 		$http.get('/trade/processOrders')
 			.success(function(data) {
 				$scope.orders = data;
+				$scope.showOrders()
 			})
 			.error(function(data) {
 				console.log('Error: ' + data);
@@ -94,6 +98,7 @@ function mainController($scope, $http) {
 				if (typeof data == 'string' && data.slice(6)=='Error!')
 					$http.alert('Error')
 				else $scope.secs= data;
+				$scope.processOrders();
 			})
 			.error(function(data) {
 				console.log('Error: ' + data);

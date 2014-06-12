@@ -42,7 +42,7 @@
 //			return (values[0].value)
 //		}
 		
-		security.mapReduce(search, function(err,results){
+		security.mapReduce(search,   function(err,results){
 			if (err)
 				return console.log('database is empty!')
 			//console.log('mapReduce : '+ JSON.stringify(results))
@@ -50,6 +50,7 @@
 			for (var i=0; i< results.length; i++) {
 				secs.push(results[i].value)
 			}
+			secs.sort(function(a,b) {return (a.order-b.order)})
 			res.json(secs)
 		})
 		

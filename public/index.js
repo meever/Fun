@@ -23,7 +23,7 @@ function  frontController($scope, $http) {
 	}
 
     
-	$http.get('/trade/securities/')
+	$http.get('/trade/securities')
 		.success(function(data) {
 			$scope.secs = data;
 		})

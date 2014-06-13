@@ -3,58 +3,50 @@
 <html xmlns:ng="http://angularjs.org" >
 <head>
 	<title>Trading WorldCup 2014</title>
-	<style>
-		body 		{ padding-top:10px; word-wrap:break-word; }
-	</style>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<!--[if lte IE 9]>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    
+    
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+
+	
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 
 
-	<body xmlns:ng="http://angularjs.org"  ng-app="securities" ng-controller="mainController">
-
-		<div class="navbar navbar-primary navbar-fixed-top" role="navigation">
+<body  xmlns:ng="http://angularjs.org"  ng-app="securities" ng-controller="mainController">
+		<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 			  <div class="container">
+			  		<div class="navbar-header" >
+		          		<a class="navbar-brand" href="#"  >   
+									Welcome <%= user.local.name %> 	
+									<script>var userName = "<%= user.local.name %>" </script>!	
+						</a>
+					</div>
 					<div class="navbar-collapse collapse navbar-right">
 							<ul class="nav navbar-nav">
 							  <li>
-								<a href="#head" class="btn btn-default btn-lg pull-right">Security List</a>
+								<a href="#head" class="btn btn-default btn-lg">Trade Bulletin</a>
 							  </li>
 							  <li>
-								<a href="#orderbook" class="btn btn-default btn-lg pull-right">Order Book</a>
+								<a href="#orderbook" class="btn btn-default btn-lg">Order Book</a>
 							  </li>	
 							  <li>
-								<a href="/logout" class="btn btn-default btn-lg pull-right">Logout</a>
+								<a href="/logout" class="btn btn-default btn-lg">Logout</a>
 							  </li>
 							</ul>
-					</div>
-			  </div>
-		</div>
-		<div id="head" class="page-header text-center">			
-					<h1>33rd Floor WorldCup 2014 Exchange <br>
-						<small>Welcome <%= user.local.name %> !</small>	
-						<script>var userName = "<%= user.local.name %>" </script>			
-					</h1>	
-		</div>
-		<div class="container" style="display: none;">
-			<div class="row">
-				<!-- LOCAL INFORMATION -->
-				<div class="col-sm-6">
-					<div class="well">
-						<h3><span class="fa fa-user"></span> Local</h3>
-						<p>
-							<strong>id</strong>: <%= user._id %><br>
-							<strong>name</strong>: <%= user.local.name %><br>
-							<strong>password</strong>: <%= user.local.password %>
-						</p>
-					</div>
-				</div>
+					</div>	
 			</div>
 		</div>
+		
+	<div  id="head" style="padding-top : 90px" >
 		<div id="secs-list" class="row">
 			<div class="col-lg-10 col-lg-offset-1" >			
 				<div class="panel panel-default">
@@ -187,14 +179,10 @@
 				</div>
 				<!-- /.panel -->
 			</div>
-		</div>
-
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-
+		</div>	
+	</div>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->	
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
-
 		<script src="client.js"></script>
 		 
 			

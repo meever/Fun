@@ -160,7 +160,7 @@
 		book.find(cc).sort("time").exec(function(err,data){
 			if (err)
 				return console.log('database is empty!')
-			console.log(cc, data)
+			//console.log(cc, data)
 			res.json(data)
 		})	
 	}
@@ -192,7 +192,7 @@
 					                    {name: 'Market', price: order.price , share: -1 * order.share}]}},
 			    {safe: true, upsert:true},
 			    function(err,sec){
-			    	sec.OI=sec.OI - order.share
+			    	sec.OI=sec.OI + Math.abs( order.share)
 			    	sec.save(function(err){
 			    			if (err)
 								console.log('err')

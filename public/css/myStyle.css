@@ -1,5 +1,5 @@
 body {
-background-color: #000000;
+background-color: #00348c;
 min-height: 800px;
 padding-top: 175px;
 }
@@ -15,33 +15,33 @@ input[type="text"] {
    font-size: 12px;
 }
 div.navbar.navbar-default.navbar-fixed-top {
-  	background-color: #000000;  	
-  	border-color: #000000;
+  	background-color: #00348c;  	
+  	border-color: #00348c;
     margin-bottom: 0px;
     border-bottom-width: 0px;
 }
 
 .navbar-default{
-    background-color: #ff0000;
+    background-color: #f3f3f3;
     height : 30px;
     padding : 0 0 1px 0 ;
 }
 
 .navbar-default .navbar-brand {
-    color:#ff0000;
+    color:#f3f3f3;
     height : 30px;
     padding : 5px 0 5px 35px ;
 }
 a.btn.btn-primary.btn-lg{
-  color: #ff0000;
-  background-color: #000000;
-  border-color: #000000;
+  color: #f3f3f3;
+  background-color: #00348c;
+  border-color: #00348c;
   padding: 5px 20px 5px 10px;
 }
 
 .jumbotron {
-	background-color : #ffff00;
-    color: #ff0000;
+	background-color : #f70029;
+    color: #f3f3f3;
     padding: 8px 0 8px 0;
     margin: 0 0 0 0 ;
  }
@@ -59,18 +59,26 @@ margin-right: 0px;
 
 
 .panel-primary{
-  background-color: #ffffdc ;
-  border-color:  #ff0000;
+  background-color: #00348c ;
+  border-color:  #fff;
   border-width: 3px
 }
 
 .panel-primary .panel-heading{
-  background-color: #000000 ;
-  border-color:  #ff0000;
-  color: #ffff00;
+  background-color: #f70029 ;
+  border-color:  #fff;
+  color: #fff;
   border-width: 3px
 }
 
+thead,tbody {
+color: #fff;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #f70029;
+ }
 
 #chatroom{
 	height : 565px;
@@ -104,6 +112,7 @@ ul {
 
 .messages {
   font-size: 100%;
+  color : white
 }
 
 .inputMessage {
@@ -111,7 +120,7 @@ ul {
 }
 
 .log {
-  color: gray;
+  color: white;
   font-size: 70%;
   margin: 5px;
   text-align: center;
@@ -130,11 +139,11 @@ ul {
   overflow-y: scroll;
 }
 .timeBody {
-	color : gray
+	color : #ccffff
 }
 
 .message.typing .messageBody {
-  color: gray;
+  color: white;
 }
 
 .username {
